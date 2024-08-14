@@ -1,17 +1,69 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+        }
+        .search-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .results {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        .result-item {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="get">
-        <select>
 
-        </select>
-    </form>
+<div class="search-container">
+    <input type="text" id="searchWord" class="search-input" placeholder="검색어를 입력하세요">
+    <button class="search-button" onclick="search()">검색</button>
+</div>
+
+<div class="results" id="resultsContainer">
+    <!-- 검색 결과가 여기에 표시됩니다. -->
+</div>
+
+<script>
+    function search() {
+        const searchWord = document.getElementById('searchWord').value;
+        const resultsContainer = document.getElementById('resultsContainer');
+
+        // 검색 결과를 임시로 생성 (실제 구현에서는 서버와 통신)
+        resultsContainer.innerHTML = ''; // 이전 결과 지우기
+        if (searchWord) {
+            // 여기에 검색 결과를 추가하는 로직을 작성할 수 있습니다.
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            resultItem.textContent = `검색 결과: ${searchWord}에 대한 결과입니다.`;
+            resultsContainer.appendChild(resultItem);
+        } else {
+            resultsContainer.innerHTML = '<div>검색어를 입력해주세요.</div>';
+        }
+    }
+</script>
+
 </body>
 </html>

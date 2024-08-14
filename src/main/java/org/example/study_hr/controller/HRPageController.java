@@ -15,8 +15,12 @@ public class HRPageController {
 
     @GetMapping("/insertData")
     public String insertData(Model model) {
-        model.addAttribute("message","확인합니다.");
+        model.addAttribute("message", "확인합니다.");
         return "insert02";
     }
 
+    @GetMapping("/search")
+    public String search(Model model) {
+        return "/hr/search.html";
+    }
 }
