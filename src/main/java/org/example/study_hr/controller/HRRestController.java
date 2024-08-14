@@ -2,20 +2,16 @@ package org.example.study_hr.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.study_hr.service.EmployeeAttendanceService;
-import org.example.study_hr.service.HRService;
 import org.springframework.web.bind.annotation.*;
+import org.example.study_hr.service.HRService;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +30,6 @@ public class HRRestController {
         ArrayList<Map<String,String>> result = (ArrayList<Map<String,String>>) eas.searchEmployeeAttendance(param);
         return result;
     }
-}
 
     @PostMapping("/insertDept")
     public String insertDept(@RequestParam String deptId, @RequestParam String deptName) {
@@ -45,8 +40,6 @@ public class HRRestController {
 
         // 서비스 클래스의 메서드를 호출하여 데이터베이스에 삽입합니다.
         hrService.insertDept(paramMap);
-
-
         return "insert";
     }
 
