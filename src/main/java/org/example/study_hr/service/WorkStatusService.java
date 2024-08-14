@@ -25,4 +25,7 @@ public class WorkStatusService {
         return result;
     }
 
+    public void insertWork(Map<String, Object> param) {
+        shareDAO.insert("WorkStatus.insertWork", param);
+    }
 }

@@ -19,4 +19,8 @@
         </choose>
         ORDER BY DATE DESC;
     </select>
+    <insert id="insertEAS" parameterType="Map">
+        INSERT INTO EMPLOYEE_ATTENDANCE (WORK_ATT_PK_ID, EMPLOYEE_FK_ID, WORK_STAT_FK_ID, DATE)
+        VALUES (#{WORK_ATT_PK_ID}, #{EMPLOYEE_FK_ID}, #{WORK_STAT_FK_ID}, #{DATE})
+    </insert>
 </mapper>

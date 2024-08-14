@@ -11,4 +11,8 @@
     <delete id="deleteWorkStatus" parameterType="Map">
         delete from WORK_STATUS where WORK_STAT_PK_ID = #{workStatPkId}
     </delete>
+    <insert id="insertWork" parameterType="Map">
+        INSERT INTO WORK_STATUS (WORK_STAT_PK_ID, STATUS)
+        VALUES (#{WORK_STAT_PK_ID}, #{STATUS})
+    </insert>
 </mapper>
