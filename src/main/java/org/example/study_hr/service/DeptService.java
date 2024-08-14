@@ -1,6 +1,7 @@
 package org.example.study_hr.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.study_hr.dao.ShareDAO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +10,9 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class DeptService {
-    private final SqlSessionTemplate sqlSessionTemplate;
+    private final ShareDAO shareDAO;
 
-    public void insertDept(Map<String, Object> param) {
-        sqlSessionTemplate.insert("Dept.insertDept", param);
+    public void insertDept(Map param) {
+        shareDAO.insert("insertDept",param);
     }
 }

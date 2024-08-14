@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Dept">
+<mapper namespace="WorkStatus">
+    <insert id="insertWorkStatus" parameterType="Map">
+        INSERT INTO DEPT (WORK_STAT_PK_ID, STATUS) VALUES
+            (#{workStatPkId},#{status})
+    </insert>
+    <select id="selectWorkStatus" parameterType="Map" resultType="Map">
+        select * from WORK_STATUS where WORK_STAT_PK_ID = #{workStatPkId}
+    </select>
+    <delete id="deleteWorkStatus" parameterType="Map">
+        delete from WORK_STATUS where WORK_STAT_PK_ID = #{workStatPkId}
+    </delete>
     <insert id="insertWork" parameterType="Map">
         INSERT INTO WORK_STATUS (WORK_STAT_PK_ID, STATUS)
         VALUES (#{WORK_STAT_PK_ID}, #{STATUS})

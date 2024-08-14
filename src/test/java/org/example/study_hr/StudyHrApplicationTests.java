@@ -17,11 +17,17 @@ class StudyHrApplicationTests {
     @Test
     void contextLoads() {
     }
-//    @Test
-//    void insertDept() {
-//        Map<String,String> map = new HashMap<>();
-//        map.put("DEPT_PK_ID", "DEPT_03");
-//        map.put("DEPT_NAME", "법무");
-//        deptService.insertDept(map);
-//    }
+    @Test
+    void insertDept() {
+        Map<String,String> map = new HashMap<>();
+        map.put("DEPT_PK_ID", "DEPT_03");
+        map.put("DEPT_NAME", "법무");
+        deptService.insertDept(map);
+    }
+
+    @Test
+    void workStatus() {
+        Map<String,String> map = new HashMap<>();
+        map.put("", "");
+    }
 }
