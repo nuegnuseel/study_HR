@@ -10,8 +10,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class DeptService {
     private final ShareDAO shareDAO;
-
     public void insertDept(Map param) {
         shareDAO.insert("insertDept", param);
     }
+
 }

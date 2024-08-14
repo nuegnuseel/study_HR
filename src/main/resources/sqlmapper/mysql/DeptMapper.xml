@@ -5,4 +5,5 @@
         INSERT INTO DEPT (DEPT_PK_ID, DEPT_NAME) VALUES
         (#{DEPT_PK_ID},#{DEPT_NAME})
     </insert>
+
 </mapper>
