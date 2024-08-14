@@ -1,14 +1,15 @@
 package org.example.study_hr.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.study_hr.dao.HRDAO;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class HRService {
 
-    private final HRDAO hrdao;
-
+    private final DeptService deptService;
+    private final EmployeeAttendanceService empAttService;
+    private final EmployeeService empService;
+    private final WorkStatusService wsService;
 
 }
