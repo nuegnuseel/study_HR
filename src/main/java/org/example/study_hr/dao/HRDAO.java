@@ -1,12 +1,19 @@
 package org.example.study_hr.dao;
 
-import org.springframework.stereotype.Repository;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Repository
-public class HRDAO {
+import java.util.Map;
 
-//    public Object insert(String sqlMapId, Object dataMap){
-//        Object result = sqlSessionTemplate.insert(sqlMapId, dataMap);
-//        return result;
-//    }
+@Component
+public class HRDao {
+    @Autowired
+    private SqlSessionTemplate sqlSessionTemplate;
+
+
+    public Object insert(String sqlMapId, Object dataMap){
+        Object result = sqlSessionTemplate.insert(sqlMapId, dataMap);
+        return result;
+    }
 }
