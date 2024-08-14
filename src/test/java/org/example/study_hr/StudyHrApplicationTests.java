@@ -16,7 +16,6 @@ class StudyHrApplicationTests {
 
     @Test
     void contextLoads() {
-
     }
     @Test
     void insertDept() {

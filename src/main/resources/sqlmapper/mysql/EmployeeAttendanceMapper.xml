@@ -2,6 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="EmployeeAttendance">
 
+    <select id="searchEmployeeAttendance" parameterType="Map" resultType="Map">
+        select e.`MEMBER` as `name` ,ws.`STATUS` as `STATUS`, ea.DATE as DATE from EMPLOYEE_ATTENDANCE ea
+            join EMPLOYEE e on e.EMPLOYEE_PK_ID = ea.EMPLOYEE_FK_ID
+            join WORK_STATUS ws on ea.WORK_STAT_FK_ID = ws.WORK_STAT_PK_ID
+        WHERE 1 = 1
+        <choose>
+            <when test="searchWord == 'name'">
+                and e.MEMBER = #{searchStr}
+            </when>
+            <when test="searchWord == 'status'">
+                and ws.STATUS = #{searchStr}
+            </when>
+            <when test="searchWord == 'DATE'">
+                and ea.STATUS = #{searchStr}
+            </when>
+        </choose>
+        ORDER BY DATE DESC;
+    </select>
+
+    <insert id="insertEAS" parameterType="Map">
+        INSERT INTO EMPLOYEE_ATTENDANCE (WORK_ATT_PK_ID, EMPLOYEE_FK_ID, WORK_STAT_FK_ID, DATE)
+        VALUES (#{WORK_ATT_PK_ID}, #{EMPLOYEE_FK_ID}, #{WORK_STAT_FK_ID}, #{DATE})
+    </insert>
 
     <delete id="deleteEmployeeAttendance" parameterType="Map">
         DELETE
