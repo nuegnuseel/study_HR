@@ -1,17 +1,95 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직원 출석 검색</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-input, .filter-input {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="get">
-        <select>
 
-        </select>
-    </form>
+<div class="search-container">
+    <select id="searchFilter" class="filter-input">
+        <option value="name">이름</option>
+        <option value="date">날짜</option>
+        <option value="status">출근상태</option>
+    </select>
+    <input type="text" id="searchWord" class="search-input" placeholder="검색어를 입력하세요">
+    <button class="search-button" onclick="fetchData()">검색</button>
+</div>
+
+<div class="results" id="resultsContainer">
+    <!-- 검색 결과가 여기에 표시됩니다. -->
+</div>
+
+<script>
+    async function fetchData() {
+        const searchFilter = document.getElementById('searchFilter').value;
+        const searchWord = document.getElementById('searchWord').value;
+        const resultsContainer = document.getElementById('resultsContainer');
+        resultsContainer.innerHTML = ''; // 이전 결과 지우기
+        //
+        // const encodedSearchFilter = encodeURIComponent(searchFilter);
+        // const encodedSearchWord = encodeURIComponent(searchWord);
+
+        // URL 생성
+        const url = new URL(`/api/search`,window.location.origin); // 실제 API URL로 변경해야 합니다.
+        url.searchParams.append('searchFilter', searchFilter);
+        url.searchParams.append('searchWord', searchWord);
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET' // GET 메서드 사용
+            });
+            if (!response.ok) {
+                throw new Error('네트워크 응답이 좋지 않습니다.');
+            }
+            const data = await response.json();
+
+            // JSON 데이터에서 결과를 리스트로 표시
+            data.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `
+                        <strong>이름:</strong> ${item.name} <br>
+                        <strong>날짜:</strong> ${item.DATE} <br>
+                        <strong>상태:</strong> ${item.STATUS}
+                    `;
+                resultsContainer.appendChild(resultItem);
+            });
+        } catch (error) {
+            resultsContainer.innerHTML = `<div>오류가 발생했습니다: ${error.message}</div>`;
+        }
+    }
+</script>
+
 </body>
 </html>

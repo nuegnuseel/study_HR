@@ -1,6 +1,7 @@
 package org.example.study_hr.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.study_hr.service.EmployeeAttendanceService;
 import org.springframework.web.bind.annotation.*;
 import org.example.study_hr.service.HRService;
@@ -16,17 +17,22 @@ import java.util.ArrayList;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api") // API 엔드포인트를 지정
+@Slf4j
 public class HRRestController {
 
     private final EmployeeAttendanceService eas;
     private final HRService hrService;
 
     @GetMapping("/search")
-    public ArrayList<Map<String,String>> searchEmployeeAttendance(@RequestParam String searchWord,
-                                              @RequestParam String searchStr) {
-        HashMap<String,String> param = new HashMap<>();
+    public ArrayList<Map<String,String>> searchEmployeeAttendance(
+                                                @RequestParam(defaultValue = "ALL") String searchFilter,
+                                              @RequestParam String searchWord) {
+        HashMap<String, String> param = new HashMap<>();
+        log.info("searchFilter={}",searchFilter);
+        log.info("searchWord={}",searchWord);
+
+        param.put("searchFilter", searchFilter);
         param.put("searchWord", searchWord);
-        param.put("searchStr", searchStr);
         ArrayList<Map<String,String>> result = (ArrayList<Map<String,String>>) eas.searchEmployeeAttendance(param);
         return result;
     }

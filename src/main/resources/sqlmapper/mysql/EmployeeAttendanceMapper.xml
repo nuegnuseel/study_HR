@@ -8,14 +8,17 @@
             join WORK_STATUS ws on ea.WORK_STAT_FK_ID = ws.WORK_STAT_PK_ID
         WHERE 1 = 1
         <choose>
-            <when test="searchWord == 'name'">
-                and e.MEMBER = #{searchStr}
+            <when test="searchFilter == 'name'">
+                and e.MEMBER = #{searchWord}
             </when>
-            <when test="searchWord == 'status'">
-                and ws.STATUS = #{searchStr}
+            <when test="searchFilter == 'status'">
+                and ws.STATUS = #{searchWord}
             </when>
-            <when test="searchWord == 'DATE'">
-                and ea.STATUS = #{searchStr}
+            <when test="searchFilter == 'DATE'">
+                and ea.STATUS = #{searchWord}
+            </when>
+            <when test="searchFilter == 'ALL'">
+
             </when>
         </choose>
         ORDER BY DATE DESC;
